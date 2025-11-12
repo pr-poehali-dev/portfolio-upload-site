@@ -8,6 +8,7 @@ import Icon from '@/components/ui/icon';
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +23,7 @@ const Index = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setActiveSection(id);
+      setIsMobileMenuOpen(false);
     }
   };
 
@@ -120,11 +122,36 @@ const Index = () => {
                 </button>
               ))}
             </div>
-            <Button variant="ghost" className="md:hidden">
-              <Icon name="Menu" size={24} />
+            <Button 
+              variant="ghost" 
+              className="md:hidden"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <Icon name={isMobileMenuOpen ? "X" : "Menu"} size={24} />
             </Button>
           </div>
         </div>
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-white border-t shadow-lg">
+            <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
+              {['home', 'portfolio', 'services', 'pricing', 'contact'].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className={`text-left text-sm uppercase tracking-wider py-2 transition-colors hover:text-accent ${
+                    activeSection === section ? 'text-accent font-semibold' : 'text-foreground'
+                  }`}
+                >
+                  {section === 'home' && 'Главная'}
+                  {section === 'portfolio' && 'Портфолио'}
+                  {section === 'services' && 'Услуги'}
+                  {section === 'pricing' && 'Прайс'}
+                  {section === 'contact' && 'Контакты'}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </nav>
 
       <section
