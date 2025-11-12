@@ -160,7 +160,7 @@ const Index = () => {
       >
         <div className="absolute inset-0 z-0">
           <img
-            src="https://cdn.poehali.dev/projects/8bd1f897-aaa5-42ef-a482-5190bc28147b/files/18ae8d3f-7717-4740-82aa-3576906ffa29.jpg"
+            src="https://cdn.poehali.dev/files/4704cc06-d49a-4ab1-b9e4-c16f44047464.png"
             alt="Hero"
             className="w-full h-full object-cover opacity-20"
           />
